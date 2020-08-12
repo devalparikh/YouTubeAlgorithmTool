@@ -16,13 +16,13 @@ then
   tmux split-window -v
   tmux send-keys -t ${SESSION_NAME}:1 'ls' C-m
 
-#   # python server console (6)
-#   tmux new-window -n python-api -t ${SESSION_NAME}
-#   tmux send-keys -t ${SESSION_NAME}:7 'python3 .backend/etl_service/apiServer.py' C-m
-
-  # react server console (2)
+  # python server console (2)
   tmux new-window -n python-api -t ${SESSION_NAME}
-  tmux send-keys -t ${SESSION_NAME}:2 'cd frontend && npm start' C-m
+  tmux send-keys -t ${SESSION_NAME}:2 'cd backend && FLASK_APP=app.py flask run' C-m
+
+  # react server console (3)
+  tmux new-window -n python-api -t ${SESSION_NAME}
+  tmux send-keys -t ${SESSION_NAME}:3 'cd frontend && npm start' C-m
 
   # Start out on the first window when we attach
   tmux select-window -t ${SESSION_NAME}:1
