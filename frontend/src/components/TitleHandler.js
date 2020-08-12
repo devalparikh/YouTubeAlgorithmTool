@@ -26,7 +26,8 @@ export default class TitleHandler extends Component{
             total_covid: [],
             non: "n/a",
 
-            title: "hi",
+            title: "",
+            error: "",
 
         }
       }  
@@ -53,12 +54,24 @@ export default class TitleHandler extends Component{
     onChangeTitle(event) {
         if(event.target.value) {
             this.setState({title: event.target.value})
+            this.setState({error: ""})
+        } else {
+            this.setState({error: "Please enter a title"})
         }
     }
 
     onPress(title) {
-        console.log(title);
+        if(title) {
+            console.log(title);
+        }
     }
+
+    // onSubmit = function (event){
+    //     alert('it works!');
+
+    //     event.preventDefault();
+    //     console.log('hello world')
+    // }
     
     render() {
     console.log()
@@ -68,54 +81,27 @@ export default class TitleHandler extends Component{
             <Grid item xs={12} sm={12}>
                 <Grid container style={{marginBottom:10}} justify="center" spacing={3}>
                 {/* <h2>Enter Potential Title</h2> */}
-                <img src="https://developers.google.com/youtube/images/youtube_home_page_data_api.png" style={{width: "500px"}} />
+                {/* <img src="https://developers.google.com/youtube/images/youtube_home_page_data_api.png" style={{width: "500px"}} /> */}
                 </Grid>
                 
                 <Grid container justify="center" spacing={3}>
-                
-                {/* <TextField
-                    id="user-state"
-                    label="Video Title"
-                    onChange={(event, value) =>  this.onChangeUserState(value)}
-                    style={{ width: 300, height: 100 }}
-                /> */}
-
-
-
-
-                <Paper component="form" style={{ marginTop: "40px", padding: "2px 4px", display: "flex", alignItems: "center", width: "500px" }}>
-
-                    <InputBase
-                        style={{ marginLeft: "30px", flex: "1" }}
-                        placeholder="Enter Video Title"
-                        inputProps={{ 'aria-label': 'Enter Video Title' }}
-                        onChange={(event, value) =>  this.onChangeTitle(event)}
-                    />
-                    <IconButton aria-label="search" style={{ padding: "10" }}>
-                        <SearchIcon onClick={() => {this.onPress(this.state.title)}} />
-                    </IconButton>
+                    <Paper component="form" style={{ marginTop: "40px", padding: "2px 4px", display: "flex", alignItems: "center", width: "500px" }}>
+                        <InputBase
+                            style={{ marginLeft: "30px", flex: "1" }}
+                            placeholder="Enter Video Title"
+                            inputProps={{ 'aria-label': 'Enter Video Title' }}
+                            onChange={(event, value) =>  this.onChangeTitle(event)}
+                        />
+                        <IconButton aria-label="search" style={{ padding: "10" }}>
+                            <SearchIcon onClick={() => {this.onPress(this.state.title)}} />
+                        </IconButton>
                     </Paper>
-
-
-
-
                 </Grid>
                 <Grid container justify="center" spacing={3}>
-                {/* <Autocomplete
-                    id="user-city"
-                    options={csc.getCitiesOfState(this.state.selected_state_id)}
-                    // onChange={(event, value) => this.setState({selected_city_id: value.id})}
-                    getOptionLabel={(option) => option.name}
-                    style={{ width: 300, height: 100 }}
-                    renderInput={(params) => <TextField {...params} label="City" variant="outlined" />}
-                /> */}
+                    { this.state.error !== "" ? <p style={{fontWeight:900, fontSize:50, color:'#d58387'}}>{this.state.error}</p> : <p></p> }
                 </Grid>
-                {/* <Grid container justify="center" spacing={3}>
-                    <p>{this.state.selected_state_id}</p>
-                </Grid>
-                <Grid container justify="center" spacing={3}>
-                    <p>{this.state.selected_city_id}</p>
-                </Grid> */}
+
+
                 <Grid container justify="center" spacing={3}>
                     { this.state.selected_state_name !== "" ? <p style={{fontWeight:900, fontSize:50, color:'#444444'}}>{this.state.total_covid[0]}</p> : <p></p> }
                 </Grid>
