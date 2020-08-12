@@ -19,7 +19,8 @@ todo
 - [Exported Model with count_vect](#ytmodel-usage)
 
 ### Usage
-- Run `./init.sh` to start shell
+- Run `./init.sh` to start services
+- Run `./clean.sh` to shut down services
 - `Python API Server` => `port 5000`
 - `React Front End` => `port 3000`
 
