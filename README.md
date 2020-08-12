@@ -18,6 +18,13 @@ todo
 - Anaconda
 - [Exported Model with count_vect](#ytmodel-usage)
 
+### Usage
+- Run `./init.sh` to start shell
+- `Python API Server` => `port 5000`
+- `React Front End` => `port 3000`
+
+
+
 ### YTModel Usage
 1. Call `YTModel.preprocessing()` to preprocess dataframe of training and test data
 2. Call `YTModel.trainModelPROD()` to train ML model on preprocessed data
