@@ -16,3 +16,8 @@
 3. Call `YTModel.serialize_model()` to export ML model
 
 The serialized object file can be used in external use cases. This file is needed to run the backend server. If this is running on a local machine, be sure to create this object file during environment set up.
+
+### Dependencies
+- Python3
+- Anaconda
+- [Exported Model](#ytmodel-usage)
