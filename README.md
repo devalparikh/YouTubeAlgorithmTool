@@ -16,12 +16,12 @@ todo
 ### Dependencies
 - Python3
 - Anaconda
-- [Exported Model](#ytmodel-usage)
+- [Exported Model with count_vect](#ytmodel-usage)
 
 ### YTModel Usage
 1. Call `YTModel.preprocessing()` to preprocess dataframe of training and test data
 2. Call `YTModel.trainModelPROD()` to train ML model on preprocessed data
-3. Call `YTModel.serialize_model()` to export ML model
+3. Call `YTModel.serialize_model()` to export ML model and count_vect
 
 The serialized object file can be used in external use cases. This file is needed to run the backend server. If this is running on a local machine, be sure to create this object file during environment set up.
 
