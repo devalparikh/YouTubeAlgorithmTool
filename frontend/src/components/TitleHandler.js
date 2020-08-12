@@ -81,14 +81,14 @@ export default class TitleHandler extends Component{
                 console.log(data)
                 let viewCount = parseInt(data.prediction)
                 let ans = 0
-                if(viewCount > 13418844) {
+                if(viewCount > 1000000) {
                     ans = 950
-                } else if(viewCount > 1000000) {
-                    ans = 700
                 } else if(viewCount > 400000) {
+                    ans = 700
+                } else if(viewCount > 100000) {
                     ans = 500
                 } else if(viewCount > 10000) {
-                    ans = 200
+                    ans = 250
                 } else {
                     ans = 50
                 }
