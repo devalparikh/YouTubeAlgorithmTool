@@ -11,6 +11,7 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
+import ReactSpeedometer from "react-d3-speedometer"
 
 
 
@@ -27,7 +28,9 @@ export default class TitleHandler extends Component{
             non: "n/a",
 
             title: "",
-            error: "",
+            prediction: "",
+            predictionNum: 0,
+
 
         }
       }  
@@ -54,15 +57,45 @@ export default class TitleHandler extends Component{
     onChangeTitle(event) {
         if(event.target.value) {
             this.setState({title: event.target.value})
-            this.setState({error: ""})
+            this.setState({prediction: ""})
         } else {
-            this.setState({error: "Please enter a title"})
+            this.setState({prediction: "Please enter a title"})
         }
     }
 
     onPress(title) {
         if(title) {
             console.log(title);
+
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title: this.state.title })
+            };
+            fetch('http://localhost:5000/predict', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                // this.setState({ prediction: parseInt(data.prediction).toLocaleString() + " views" })
+                this.setState({ predictionNum: parseInt(data.prediction) })
+
+                console.log(data)
+                let viewCount = parseInt(data.prediction)
+                let ans = 0
+                if(viewCount > 13418844) {
+                    ans = 950
+                } else if(viewCount > 1000000) {
+                    ans = 700
+                } else if(viewCount > 400000) {
+                    ans = 500
+                } else if(viewCount > 10000) {
+                    ans = 200
+                } else {
+                    ans = 50
+                }
+                this.setState({ predictionNum: ans })
+
+            });
+
         }
     }
 
@@ -98,7 +131,53 @@ export default class TitleHandler extends Component{
                     </Paper>
                 </Grid>
                 <Grid container justify="center" spacing={3}>
-                    { this.state.error !== "" ? <p style={{fontWeight:900, fontSize:50, color:'#d58387'}}>{this.state.error}</p> : <p></p> }
+                    { this.state.prediction !== "" ? <p style={{fontWeight:900, fontSize:50, color:'#d58387'}}>{this.state.prediction}</p> : <p></p> }
+                </Grid>
+
+                <Grid container justify="center" spacing={3} style={{ marginTop: "60px" }}>
+                    <ReactSpeedometer
+                        value={this.state.predictionNum}
+                        currentValueText="Virality Score: #{value}"
+                        currentValuePlaceholderStyle={"#{value}"}
+                        needleColor="steelblue"
+                        needleTransitionDuration={2000}
+                        needleTransition="ease"
+                        textColor={"#d58387"}
+                        needleHeightRatio={0.7}
+                        maxSegmentLabels={5}
+                        // segments={5555}
+                        // customSegmentStops={[0, 10, 500, 750, 1000]}
+                        customSegmentLabels={[
+                            {
+                              text: "Very Bad",
+                              position: "INSIDE",
+                              color: "#555",
+                              value: "100"
+                            },
+                            {
+                              text: "Bad",
+                              position: "INSIDE",
+                              color: "#555",
+                            },
+                            {
+                              text: "Ok",
+                              position: "INSIDE",
+                              color: "#555",
+                              fontSize: "19px",
+                            },
+                            {
+                              text: "Good",
+                              position: "INSIDE",
+                              color: "#555",
+                            },
+                            {
+                              text: "VIRAL",
+                              position: "INSIDE",
+                              color: "#555",
+                              fontSize: "14px",
+                            },
+                          ]}
+                    />
                 </Grid>
 
 

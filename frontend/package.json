@@ -1,6 +1,6 @@
 {
-  "homepage": "http://devalparikh.github.io/covidbystate",
-  "name": "housinghelper",
+  "homepage": "",
+  "name": "YouTubeAlgorithmTool",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.2.1",
     "country-state-city": "^1.0.4",
     "react": "^16.13.1",
+    "react-d3-speedometer": "^0.12.0",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.2",
     "us-state-codes": "^1.1.2"
