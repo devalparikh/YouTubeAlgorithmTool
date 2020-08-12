@@ -1,6 +1,8 @@
 
 ### Reverse engineering the YouTube algorithm by using historical data on videos throughout the platform. 
 
+![Alt Text](https://github.com/devalparikh/YouTubeAlgorithmTool/blob/master/YTATGIF.gif?raw=true)
+
 ### v1
 - Current using extracting features out of titles of YouTube videos by using term frequency-inverse document frequency (tf-idf). 
 - Using the document-term matrix to train multiple Machine Learning algorithms and applying model selection.
