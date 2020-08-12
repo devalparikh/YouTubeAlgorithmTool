@@ -10,6 +10,14 @@
   - Provide insight on biases within the results.
   - Obtain CPM data and attempt to predict Google Adsense for a given video.
 
+### System Design
+todo
+
+### Dependencies
+- Python3
+- Anaconda
+- [Exported Model](#ytmodel-usage)
+
 ### YTModel Usage
 1. Call `YTModel.preprocessing()` to preprocess dataframe of training and test data
 2. Call `YTModel.trainModelPROD()` to train ML model on preprocessed data
@@ -17,7 +25,3 @@
 
 The serialized object file can be used in external use cases. This file is needed to run the backend server. If this is running on a local machine, be sure to create this object file during environment set up.
 
-### Dependencies
-- Python3
-- Anaconda
-- [Exported Model](#ytmodel-usage)
